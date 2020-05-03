@@ -1,5 +1,7 @@
 const _ = require('lodash')
 const config = require('../configs/configs')
+var filePath = './path/to/selfie.jpg';
+const aws = require('../helpers/awss3')
 
 module.exports = {
   uploadAws: (req, res) => {
@@ -16,6 +18,10 @@ module.exports = {
   },
   uploadCloudinary: (req, res) => {
     console.log('Hello world')
+    aws.uploadToS3('my-bucket-name', 'my-picture-folder', filePath , res.body).then(function(result) {
+      console.info('Success! Uploaded ' + filePath + ' to ' + result.Location);
+  });
+    res.json("done");
   },
   upload: (req, res) => {
     console.log('Hello world')
