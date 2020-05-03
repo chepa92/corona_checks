@@ -1,0 +1,22 @@
+{
+  "name": "corona_checks",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.522.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.1",
+    "standard": "^13.1.0"
+  }
+}
