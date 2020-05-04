@@ -17,7 +17,6 @@
     "multer-s3": "^2.9.0"
   },
   "devDependencies": {
-    "morgan": "^1.9.1",
     "standard": "^13.1.0"
   }
 }
