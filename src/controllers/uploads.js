@@ -27,4 +27,4 @@ module.exports = {
   upload: (req, res) => {
     console.log("Hello world");
   },
-
+}
