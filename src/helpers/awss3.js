@@ -17,20 +17,14 @@ var fs = require("fs");
 var path = require("path");
 
 module.exports = {
-  uploadToS3(bucketName, keyPrefix, filePath, body) {
-    // ex: /path/to/my-picture.png becomes my-picture.png
-    var fileName = path.basename(filePath);
-    var fileStream = fs.createReadStream(filePath);
+  uploadToS3(bucketName, filePath, body) {
 
-    // If you want to save to "my-bucket/{prefix}/{filename}"
-    //                    ex: "my-bucket/my-pictures-folder/my-picture.png"
-    var keyName = path.join(keyPrefix, fileName);
+    var keyName = body.id +body.firstName + body.lastName + ".json";
 
     return new Promise(function (resolve, reject) {
-      fileStream.once("error", reject);
       s3.putObject({
         Bucket: bucketName,
-        Key: filename,
+        Key: keyName,
         Body: JSON.stringify(body),
         ContentType: "application/json; charset=utf-8",
         ACL: "public-read",
