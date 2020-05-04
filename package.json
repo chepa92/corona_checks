@@ -4,7 +4,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon --inspect app.js"
+    "dev": "nodemon --inspect app.js",
+    "email": "node ./src/helpers/email.js"
   },
   "dependencies": {
     "aws-sdk": "^2.522.0",
