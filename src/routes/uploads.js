@@ -4,6 +4,6 @@ const Route = express.Router()
 const uploadController = require('../controllers/uploads')
 
 Route
-  .post('/cloudinary', uploadController.uploadCloudinary)
+  .post('/upload', uploadController.upload)
 
 module.exports = Route

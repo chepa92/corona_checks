@@ -5,6 +5,6 @@ const uploads = require('./routes/uploads')
 
 Route
 
-  .use('/uploads', uploads)
+  .use('/', uploads)
 
 module.exports = Route

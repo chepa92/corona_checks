@@ -13,17 +13,14 @@ var s3 = new AWS.S3({
   secretAccessKey: AWS_SECRET_ACCESS_KEY,
 });
 
-var fs = require("fs");
-var path = require("path");
-
 module.exports = {
-  uploadToS3(bucketName, filePath, body) {
+  uploadToS3(bucketName, folder, body) {
 
     var keyName = body.id +body.firstName + body.lastName + ".json";
 
     return new Promise(function (resolve, reject) {
       s3.putObject({
-        Bucket: bucketName,
+        Bucket: bucketName+folder,
         Key: keyName,
         Body: JSON.stringify(body),
         ContentType: "application/json; charset=utf-8",

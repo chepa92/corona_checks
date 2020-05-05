@@ -16,11 +16,11 @@ var params = {
   Destination: {
     /* required */
     CcAddresses: [
-      "test@test.com",
+      process.env.AWS_ACCESS_KEY_ID,
       /* more items */
     ],
     ToAddresses: [
-      "test@test.com",
+      process.env.AWS_ACCESS_KEY_ID,
       /* more items */
     ],
   },
@@ -42,9 +42,9 @@ var params = {
       Data: "Test email",
     },
   },
-  Source: "test@test.com" /* required */,
+  Source: process.env.AWS_ACCESS_KEY_ID /* required */,
   ReplyToAddresses: [
-    "test@test.com",
+    process.env.AWS_ACCESS_KEY_ID,
     /* more items */
   ],
 };
