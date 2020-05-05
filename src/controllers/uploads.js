@@ -1,6 +1,6 @@
 const _ = require("lodash");
-const config = require("../configs/configs");
 const aws = require("../helpers/awss3");
+const email = require("../helpers/email");
 
 module.exports = {
   upload: (req, res) => {
@@ -15,6 +15,7 @@ module.exports = {
       .uploadToS3("korona-checks/", folder, req.body)
       .then(function (result) {
         console.info("Success! Uploaded to " + folder);
+        email.sendmail(folder);
       });
     res.json("done");
   }

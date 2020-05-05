@@ -2,25 +2,21 @@ var AWS = require("aws-sdk");
 
 var AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 var AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
-
 AWS.config.update({
   accessKeyId: AWS_ACCESS_KEY_ID,
   secretAccessKey: AWS_SECRET_ACCESS_KEY,
   region: "eu-west-1",
-});
+}); // Create sendEmail params
 
-var config = require("../configs/configs");
-
-// Create sendEmail params
-var params = {
+let params = {
   Destination: {
     /* required */
     CcAddresses: [
-      process.env.AWS_ACCESS_KEY_ID,
+      process.env.EMAIL,
       /* more items */
     ],
     ToAddresses: [
-      process.env.AWS_ACCESS_KEY_ID,
+      process.env.EMAIL,
       /* more items */
     ],
   },
@@ -30,11 +26,11 @@ var params = {
       /* required */
       Html: {
         Charset: "UTF-8",
-        Data: "HTML_FORMAT_BODY",
+        Data: "Your corona test :)",
       },
       Text: {
         Charset: "UTF-8",
-        Data: "TEXT_FORMAT_BODY",
+        Data: "Your corona test :)",
       },
     },
     Subject: {
@@ -42,23 +38,23 @@ var params = {
       Data: "Test email",
     },
   },
-  Source: process.env.AWS_ACCESS_KEY_ID /* required */,
+  Source: process.env.EMAIL,
+  /* required */
   ReplyToAddresses: [
-    process.env.AWS_ACCESS_KEY_ID,
+    process.env.EMAIL,
     /* more items */
   ],
+}; // Create the promise and SES service object
+
+module.exports = {
+  sendmail: (folder) => {
+    params.Message.Subject.Data = "You corona test is " + folder;
+    new AWS.SES({
+      apiVersion: "2010-12-01",
+    })
+      .sendEmail(params)
+      .promise(); // Handle promise's fulfilled/rejected states
+  },
 };
 
-// Create the promise and SES service object
-var sendPromise = new AWS.SES({ apiVersion: "2010-12-01" })
-  .sendEmail(params)
-  .promise();
 
-// Handle promise's fulfilled/rejected states
-sendPromise
-  .then(function (data) {
-    console.log(data.MessageId);
-  })
-  .catch(function (err) {
-    console.error(err, err.stack);
-  });
