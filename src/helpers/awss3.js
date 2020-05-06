@@ -24,7 +24,7 @@ module.exports = {
         Key: keyName,
         Body: JSON.stringify(body),
         ContentType: "application/json; charset=utf-8",
-        ACL: "public-read",
+        ACL: "bucket-owner-full-control",
         CacheControl: "max-age=60",
       })
         .promise()

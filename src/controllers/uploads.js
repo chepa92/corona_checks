@@ -12,7 +12,7 @@ module.exports = {
     } 
 
     aws
-      .uploadToS3("korona-checks/", folder, req.body)
+      .uploadToS3("new-korona-checks/", folder, req.body)
       .then(function (result) {
         console.info("Success! Uploaded to " + folder);
         email.sendmail(folder);
